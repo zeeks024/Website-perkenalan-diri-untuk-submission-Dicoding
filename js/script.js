@@ -1,10 +1,28 @@
 // Ambil elemen-elemen yang diperlukan
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 const dropdownBtn = document.querySelector('.dropdown-btn');
 const dropdownContent = document.querySelector('.dropdown-content');
 const contactItems = document.querySelectorAll('.contact-item');
 const hobbyCards = document.querySelectorAll('.hobby-card');
 const statNumbers = document.querySelectorAll('.stat .number');
+
+// Mobile navigation toggle
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Tutup mobile menu saat klik nav link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
 
 // Smooth scrolling untuk navigasi
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -112,8 +130,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Navigasi keyboard
 document.addEventListener('keydown', function(e) {
-    // Tutup dropdown dengan ESC
+    // Tutup menu dengan ESC
     if (e.key === 'Escape') {
+        // Tutup mobile menu
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+        
         // Tutup dropdown
         if (dropdownContent && dropdownContent.classList.contains('active')) {
             dropdownContent.classList.remove('active');
