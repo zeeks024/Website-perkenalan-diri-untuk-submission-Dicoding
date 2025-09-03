@@ -27,11 +27,9 @@ if (dropdownBtn && dropdownContent) {
         const arrow = this.querySelector('.arrow');
         
         if (arrow) {
-            if (dropdownContent.classList.contains('active')) {
-                arrow.style.transform = 'rotate(180deg)';
-            } else {
-                arrow.style.transform = 'rotate(0deg)';
-            }
+            arrow.style.transform = dropdownContent.classList.contains('active')
+                ? 'rotate(180deg)'
+                : 'rotate(0deg)';
         }
     });
 }
